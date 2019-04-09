@@ -1,142 +1,149 @@
-<!DOCTYPE html>
-<html lang="pt">
+{% extends "bootstrap/base.html" %}
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block title %}
+    Nameless Mangás
+{% endblock %}
 
-	<title> Nameless Mangas </title>
+{% block head %}
+    {{ super() }}
+    <link rel="shortcut icon" href="{{ url_for ('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for ('static', filename='favicon.ico') }}" type="image/x-icon">
+{% endblock %}
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/white.css" rel="stylesheet" id="theme">
-	<link rel="icon" type="imagem/png" href="img/bleach.jpg" />
-	
+{% block navbar %}
+    <div class="row">
+        <div class="col-md-12">
+            <nav id="navbar"
+                class="navbar fixed-top navbar-expand-lg navbar-light bg-light navbar-dark bg-dark justify-content-between">
 
-</head>
+                <div>
+                    <a onclick="mostrarPagina()" href="#" role="button" class="btn btn-info">Home</a>
+                    <a onclick="mostrarPagina('mangas.html')" href="#" role="button" class="btn btn-info">Mangas</a>
+                    <a onclick="mostrarPagina('about.html')" href="#" role="button" class="btn btn-info">About</a>
+                </div>
 
-<body>
-	<div class="row">
-		<div class="col-md-12">
-			<nav id="navbar"
-				class="navbar fixed-top navbar-expand-lg navbar-light bg-light navbar-dark bg-dark justify-content-between">
+                <div>
+                    <a href="#modalLogin" role="button" class="btn btn-primary" data-toggle="modal">Login</a>
+                    <a onclick="mostrarPagina('cadastro.html')" role="button" class="btn btn-outline-success">Register</a>
+                </div>
 
-				<div>
-					<a onclick="mostrarPagina()" href="#" role="button" class="btn btn-info">Home</a>
-					<a onclick="mostrarPagina('mangas.html')" href="#" role="button" class="btn btn-info">Mangas</a>
-					<a onclick="mostrarPagina('about.html')" href="#" role="button" class="btn btn-info">About</a>
-				</div>
+            </nav>
 
-				<div>
-					<a href="#modalLogin" role="button" class="btn btn-primary" data-toggle="modal">Login</a>
-					<a onclick="mostrarPagina('cadastro.html')" role="button"
-						class="btn btn-outline-success">Register</a>
-					<!-- <a id="changeTheme" onclick="mudarTema()" role="button" class="btn btn-secondary btn-outline-dark" >Dark Mode</a>  -->
-				</div>
+        </div>
+    </div>
+{% endblock %}  
 
-			</nav>
+{% block modalLogin %}
 
-		</div>
-	</div>
+    <div class="modal fade" id="modalLogin" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" id="login" role="document">
+            <div id="login" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">
+                        Login
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
 
+                            <label for="exampleInputEmail1">
+                                Email address
+                            </label>
+                            <input type="email" class="form-control" id="emailLogin" required>
+                        </div>
+                        <div class="form-group">
 
-	<div class="modal fade" id="modalLogin" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" id="login" role="document">
-			<div id="login" class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="myModalLabel">
-						Login
-					</h5>
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form role="form">
-						<div class="form-group">
+                            <label for="exampleInputPassword1">
+                                Password
+                            </label>
+                            <input type="password" class="form-control" id="passwordLogin" required>
+                        </div>
 
-							<label for="exampleInputEmail1">
-								Email address
-							</label>
-							<input type="email" class="form-control" id="emailLogin" required>
-						</div>
-						<div class="form-group">
+                        <button type="submit" class="btn btn-success">
+                            Login
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-							<label for="exampleInputPassword1">
-								Password
-							</label>
-							<input type="password" class="form-control" id="passwordLogin" required>
-						</div>
+    <br><br><br>
 
-						<button type="submit" class="btn btn-success">
-							Login
-						</button>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">
-						Cancel
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
+{% endblock %}
 
-	<br><br><br>
-	<div id="content">
+    
 
-	</div>
+{% block content %}
 
-	<br><br>
+<div id="content" class="container">
+    {% block page_content %}
+    
+    {% endblock %}           
+</div>
 
-	<div class="page-footer blue pt-4  navbar-dark bg-dark">
-		<div class="row text-center">
-			<div class="col-md-4">
-				<p >
-					Location: <br>
-					Street: 77 Massachusetts <br> 
-					Ave Cambridge, MA 02139, EUA	
-				</p>			
-			</div>
-			<div class="col-md-4">
-				Contact <br>
-				Phone: 9999999999 <br>
-				E-mail: namelessMangas@email.com
+<br><br>
 
-				<div class="footer-copyright text-center py-3">&copy; 2019 Copyright:
-						<a onclick="mostrarPagina('about.html')"  href="#"> Nameless Mangás</a>
-				</div>
-			</div>
-			<div class="col-md-4">
-				Social Medias
-				<ul class=" list-unstyled">
-					<li>				
-						<a href="#" class="fa fa-facebook"></a>
-					</li>
-					<li>				
-						<a href="#" class="fa fa-twitter"></a>
-					</li>
-					<li>				
-						<a href="#" class="fa fa-instagram"></a>
-					</li>
-				</ul>
+{% endblock %}
 
 
-			</div>
-		</div>
+{% block footer %}
+
+    <div class="page-footer blue pt-4  navbar-dark bg-dark">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <p >
+                    Location: <br>
+                    Street: 77 Massachusetts <br> 
+                    Ave Cambridge, MA 02139, EUA	
+                </p>			
+            </div>
+            <div class="col-md-4">
+                Contact <br>
+                Phone: 9999999999 <br>
+                E-mail: namelessMangas@email.com
+
+                <div class="footer-copyright text-center py-3">&copy; 2019 Copyright:
+                        <a onclick="mostrarPagina('about.html')"  href="#"> Nameless Mangás</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                Social Medias
+                <ul class=" list-unstyled">
+                    <li>				
+                        <a href="#" class="fa fa-facebook"></a>
+                    </li>
+                    <li>				
+                        <a href="#" class="fa fa-twitter"></a>
+                    </li>
+                    <li>				
+                        <a href="#" class="fa fa-instagram"></a>
+                    </li>
+                </ul>
 
 
-	</div>
+            </div>
+        </div>
+    </div>
 
 
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/scripts.js"></script>
+{% endblock %}
 
-</body>
+{% block scripts %}
+    {{ super() }}
+{% endblock %}
 
-</html>
+
+<!-- 
 
 <script>
 	$(document).ready( function () {
@@ -150,4 +157,4 @@
 			}
 		});
 	}
-</script>
+</script> -->
