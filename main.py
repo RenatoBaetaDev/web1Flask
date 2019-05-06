@@ -1,9 +1,7 @@
-from flask import flask, render_template, request
-from flask_bootstrap import Bootstrap
+import os
+from app import create_app, db
+from app.models import User, Role
+from flask_migrate import Migrate
 
-app = Flask(__name__)
-bootstrap = Bootstrap(app)
-
-@app.route('/')
-def index:
-    return render_template('index.html')
+app = create_app()
+migrate = Migrate(app, db)
