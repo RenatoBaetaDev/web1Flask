@@ -1,3 +1,3 @@
-# Introdução ao Flask
+# Flask Introduction
 
-Códigos desenvolvidos em sala de aula, como introdução ao Flask
+Codes created in class as Python's Flask introduction
